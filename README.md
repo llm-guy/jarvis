@@ -54,3 +54,30 @@
    ```
 ---
 
+
+
+## 🔧 Enhanced Stability Branch
+
+This branch includes important stability improvements over the original:
+
+- **Fixed Critical Bug**: Resolved 'NoneType' object has no attribute 'close' error that prevented startup
+- **Multiple Microphone Support**: Automatic detection and fallback for various audio devices
+- **Enhanced Error Handling**: Robust recovery from audio device failures and TTS issues
+- **Improved Logging**: Better status messages and debugging information
+- **Complete Tool Set**: All imported tools are now properly implemented
+- **Updated Model**: Uses qwen2.5:1.5b instead of qwen3:1.7b
+
+### Supported Audio Devices:
+- MacBook Pro Microphone (preferred)
+- Logitech BRIO
+- C34H89x
+- System default microphone
+
+The application will automatically try different microphones if the primary device fails.
+
+### Installation Notes:
+Make sure to pull the correct model:
+```bash
+ollama pull qwen2.5:1.5b
+```
+
