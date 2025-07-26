@@ -2,6 +2,7 @@ import os
 import logging
 import time
 import pyttsx3
+import re
 from dotenv import load_dotenv
 import speech_recognition as sr
 from langchain_ollama import ChatOllama, OllamaLLM
@@ -44,9 +45,47 @@ prompt = ChatPromptTemplate.from_messages([
 agent = create_tool_calling_agent(llm=llm, tools=tools, prompt=prompt)
 executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
+def clean_text_for_speech(text: str) -> str:
+    """Clean text for better speech synthesis"""
+    # Remove markdown formatting
+    text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)  # **bold** -> bold
+    text = re.sub(r'\*(.*?)\*', r'\1', text)      # *italic* -> italic
+    text = re.sub(r'`(.*?)`', r'\1', text)        # `code` -> code
+    text = re.sub(r'#{1,6}\s*', '', text)         # Remove # headers
+    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)  # [text](link) -> text
+    
+    # Remove special characters that sound bad
+    text = re.sub(r'[•◦▪▫]', '', text)            # Remove bullet points
+    text = re.sub(r'[-]{2,}', '', text)           # Remove multiple dashes
+    text = re.sub(r'[=]{2,}', '', text)           # Remove equals signs
+    text = re.sub(r'[\$]', 'dollars', text)       # $ -> dollars
+    text = re.sub(r'[%]', 'percent', text)        # % -> percent
+    text = re.sub(r'[&]', 'and', text)            # & -> and
+    
+    # Clean up mathematical expressions
+    text = re.sub(r'\$\$.*?\$\$', 'mathematical expression', text)  # $$...$$
+    text = re.sub(r'\$.*?\$', 'math', text)       # $...$
+    
+    # Remove excessive whitespace
+    text = re.sub(r'\s+', ' ', text)
+    text = text.strip()
+    
+    # Limit length to avoid very long speech
+    if len(text) > 300:
+        text = text[:297] + "..."
+    
+    return text
+
 # TTS setup
 def speak_text(text: str):
     try:
+        # Clean text for speech
+        clean_text = clean_text_for_speech(text)
+        
+        if not clean_text.strip():
+            logging.warning("⚠️ No speakable text after cleaning")
+            return
+        
         engine = pyttsx3.init()
         for voice in engine.getProperty('voices'):
             if "jamie" in voice.name.lower():
@@ -54,7 +93,7 @@ def speak_text(text: str):
                 break
         engine.setProperty('rate', 180)
         engine.setProperty('volume', 1.0)
-        engine.say(text)
+        engine.say(clean_text)
         engine.runAndWait()
         time.sleep(0.3)
     except Exception as e:
