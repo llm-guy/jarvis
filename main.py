@@ -10,6 +10,9 @@ from langchain_core.messages import HumanMessage
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from tools.time import get_time 
+from gtts import gTTS
+from playsound import playsound
+import tempfile
 
 load_dotenv()
 
@@ -47,18 +50,14 @@ executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 # TTS setup
 def speak_text(text: str):
     try:
-        engine = pyttsx3.init()
-        for voice in engine.getProperty('voices'):
-            if "jamie" in voice.name.lower():
-                engine.setProperty('voice', voice.id)
-                break
-        engine.setProperty('rate', 180)
-        engine.setProperty('volume', 1.0)
-        engine.say(text)
-        engine.runAndWait()
-        time.sleep(0.3)
+        tts = gTTS(text=text, lang='en')
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
+            temp_path = fp.name
+            tts.save(temp_path)
+        playsound(temp_path)
+        os.remove(temp_path)  # Clean up after playing
     except Exception as e:
-        logging.error(f"❌ TTS failed: {e}")
+        logging.error(f"❌ gTTS failed: {e}")
 
 # Main interaction loop
 def write():
