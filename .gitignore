@@ -1,1 +1,6 @@
 .env
+tools/__pycache__
+audio_cache
+.DS_Store
+test_*.py
+*.log
