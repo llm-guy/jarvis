@@ -1,4 +1,6 @@
 aiofiles==24.1.0
+elevenlabs==2.9.1
+pygame==2.6.1
 aiohappyeyeballs==2.6.1
 aiohttp==3.12.14
 aiosignal==1.4.0
@@ -225,7 +227,7 @@ PyQt5_sip==12.17.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 python-multipart==0.0.20
-pyttsx3==2.99
+
 pytz==2025.2
 PyYAML==6.0.2
 regex==2024.11.6
