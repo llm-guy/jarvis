@@ -29,7 +29,7 @@ logging.basicConfig(level=logging.DEBUG) # logging
 recognizer = sr.Recognizer()
 mic = sr.Microphone(device_index=MIC_INDEX)
 
-# Initialize LLM based on environment configuration
+# Initialize Friday AI persona (LLM) based on environment configuration
 use_openrouter = os.getenv("USE_OPENROUTER", "false").lower() == "true"
 
 if use_openrouter:
