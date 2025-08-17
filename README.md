@@ -1,14 +1,15 @@
 # 🧠 Jarvis – Local Voice-Controlled AI Assistant
+## 🎯 **Complete Command List**
 
-<div align="center">
+Start any interaction by saying **"Jarvis"** a## 🛠 **Built-in Tools**
+
+<details>
+<summary><b>Click to expand/collapse Built-in Tools</b></summary>
+
+Jarvis comes with powerful built-in tools that enhance its capabilities:waiting for the "Yes sir?" response. Then use any of these commands:iv align="center">
 
 ![Jarvis Logo](https://img.shields.io/badge/Jarvis-AI%20Assistant-blue?style=for-the-badge&logo=robot)
-![Version](https:- 🚀 **New App Launcher Tool**:
-  - Launch applications with voice commands
-  - Support for common Windows apps and shortcuts
-  - Automatic app detection in Start Menu and Program Files
-  - Smart path detection for .exe and .lnk files
-  - Simple voice commands: "open [app]" or "launch [app]".shields.io/badge/Version-1.1.0-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.1.0-green?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey?style=for-the-badge)
 
@@ -17,6 +18,25 @@
 *Voice-activated, privacy-focused, and completely offline*
 
 </div>
+
+---
+
+## 📑 Table of Contents
+- [Overview](#-what-is-jarvis)
+- [Command List](#-complete-command-list)
+  - [Time Commands](#-time-commands)
+  - [Screenshot Commands](#-screenshot-commands)
+  - [Web Search Commands](#-web-search-commands)
+  - [Matrix Mode Commands](#-matrix-mode-commands)
+  - [Shutdown Commands](#-shutdown-commands)
+  - [Version Commands](#-version--update-commands)
+  - [App Launcher Commands](#-app-launcher-commands)
+- [Built-in Tools](#-built-in-tools)
+- [Installation](#-quick-start-guide)
+- [Troubleshooting](#-troubleshooting)
+- [FAQ](#-faq)
+- [Contributing](#-contributing)
+- [Support](#-support)
 
 ---
 
@@ -272,6 +292,9 @@ Jarvis comes with powerful built-in tools that enhance its capabilities:
 
 ## 🚀 **Quick Start Guide**
 
+<details>
+<summary><b>Click to show Installation Guide</b></summary>
+
 ### 📋 **Prerequisites**
 - **Python 3.8+** installed on your system
 - **Ollama** installed and running
@@ -343,6 +366,9 @@ python main.py
 
 ## 🛠 **Troubleshooting**
 
+<details>
+<summary><b>Click to show Troubleshooting Guide</b></summary>
+
 ### ❌ **Common Issues & Solutions**
 
 #### **Microphone Not Working**
@@ -384,6 +410,9 @@ pip install mss pyttsx3 SpeechRecognition
 ---
 
 ## ❓ **FAQ**
+
+<details>
+<summary><b>Click to show Frequently Asked Questions</b></summary>
 
 ### **Q: Can I use Jarvis without internet?**
 **A:** Yes! Jarvis runs completely offline using local models and processing.
