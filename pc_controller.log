@@ -1,0 +1,28 @@
+2025-08-17 20:30:24,431 - INFO - Listening for wake word...
+2025-08-17 20:30:31,593 - WARNING - Could not understand audio.
+2025-08-17 20:30:31,593 - INFO - Listening for wake word...
+2025-08-17 20:30:36,656 - INFO - Heard: hello Jarvis
+2025-08-17 20:30:36,656 - INFO - Triggered by: hello Jarvis
+2025-08-17 20:30:38,907 - INFO - Listening for next command...
+2025-08-17 20:30:47,703 - INFO - Command: show me system information
+2025-08-17 20:30:47,703 - INFO - Sending command to agent...
+2025-08-17 20:30:50,908 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-08-17 20:30:51,377 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-08-17 20:30:55,265 - INFO - Agent responded: Here is the system information for your PC:
+
+- **Operating System**: Windows-11-10.0.26100-SP0
+- **Processor**: AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD
+- **Architecture**: 64bit, WindowsPE
+- **Hostname**: MaxPC
+- **Username**: maxsc
+- **Is Admin**: False
+- **Python Version**: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+- **Dependencies**: Various modules including `psutil`, `pyautogui`, `keyboard`, `mouse`, `cv2`, `numpy`, `PIL`, and `pywin32`
+- **Boot Time**: 2025-08-17 15:41:47
+- **CPU Count**: 16
+- **Memory Total**: 15.34 GB
+- **Disk Usage**: 
+  - C: 476.04 GB (Used: 229.02 GB, Free: 247.02 GB, Percent: 48.1%)
+- **Network Interfaces**: Multiple interfaces with IP addresses and network information.
+
+Let me know if you need further details!

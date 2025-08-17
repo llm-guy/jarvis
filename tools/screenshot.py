@@ -14,14 +14,21 @@ def take_screenshot() -> str:
     - "Save a screenshot"
     """
     try:
-        image_path = os.path.expanduser("~/path/to/example.png")
-        os.makedirs(os.path.dirname(image_path), exist_ok=True)
+        # Create screenshots directory in user's Pictures folder
+        screenshots_dir = os.path.expanduser("~/Pictures/Jarvis")
+        os.makedirs(screenshots_dir, exist_ok=True)
+        
+        # Generate filename with timestamp
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"screenshot_{timestamp}.png"
+        image_path = os.path.join(screenshots_dir, filename)
 
         with mss.mss() as sct:
             monitor = sct.monitors[1]  # [1] = main monitor; [0] = all monitors
             screenshot = sct.grab(monitor)
             mss.tools.to_png(screenshot.rgb, screenshot.size, output=image_path)
 
-        return f"Screenshot captured and saved sir."
+        return "Screenshot captured."
     except Exception as e:
         return f"Failed to capture screenshot: {str(e)}"
