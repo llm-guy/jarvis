@@ -29,6 +29,6 @@ def take_screenshot() -> str:
             screenshot = sct.grab(monitor)
             mss.tools.to_png(screenshot.rgb, screenshot.size, output=image_path)
 
-        return f"Screenshot captured and saved to {image_path} sir."
+        return "Screenshot captured."
     except Exception as e:
         return f"Failed to capture screenshot: {str(e)}"
