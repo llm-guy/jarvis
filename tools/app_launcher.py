@@ -6,13 +6,12 @@ from langchain.tools import BaseTool
 # Dictionary of common apps and their default paths
 DEFAULT_APPS = {
     "steam": r"C:\Program Files (x86)\Steam\steam.exe",
-    "discord": r"C:\Users\%USERNAME%\AppData\Local\Discord\app-1.0.9013\Discord.exe",
-    "chrome": r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-    "firefox": r"C:\Program Files\Mozilla Firefox\firefox.exe",
-    "spotify": r"C:\Users\%USERNAME%\AppData\Roaming\Spotify\Spotify.exe",
-    "vscode": r"C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\Code.exe",
+    "discord": r"C:\Users\maxsc\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk",
+    "spotify": r"C:\Users\maxsc\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Spotify.lnk",
+    "cursor": r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Cursor\Cursor.lnk",
     "notepad": r"C:\Windows\system32\notepad.exe",
-    "calculator": r"C:\Windows\System32\calc.exe"
+    "calculator": r"C:\Windows\System32\calc.exe",
+    
 }
 
 def open_app(app_name: str) -> str:
