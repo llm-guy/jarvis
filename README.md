@@ -71,13 +71,6 @@ ollama run qwen3:1.7b
 
 This will download the model to your local machine. You can then exit the Ollama session by typing /bye
 
-### Step 6: Run Jarvis
-Now you're ready to start the assistant. Make sure you are still in your Jarvis-AI project folder with the virtual environment activated.
-
-Bash
-
-python main.py
-
 
 ## ▶️ How It Works (`main.py`)
 
