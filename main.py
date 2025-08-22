@@ -1,11 +1,13 @@
 import os
 import logging
 import time
+import signal
+import sys
 import pyttsx3
 from dotenv import load_dotenv
 import speech_recognition as sr
-from langchain_ollama import ChatOllama, OllamaLLM
-# from langchain_openai import ChatOpenAI # if you want to use openai
+from langchain_ollama import ChatOllama, OllamaLLM  
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
@@ -17,7 +19,16 @@ MIC_INDEX = 0
 TRIGGER_WORD = "jarvis"
 CONVERSATION_TIMEOUT = 30  # seconds of inactivity before exiting conversation mode
 
-logging.basicConfig(level=logging.DEBUG) # logging
+logging.basicConfig(level=logging.INFO) # logging
+
+# Global shutdown flag
+shutdown_requested = False
+
+def signal_handler(signum, frame):
+    """Handle shutdown signals gracefully"""
+    global shutdown_requested
+    logging.info(f"🔴 Received signal {signum}. Initiating graceful shutdown...")
+    shutdown_requested = True
 
 # api_key = os.getenv("OPENAI_API_KEY") removed because it's not needed for ollama
 # org_id = os.getenv("OPENAI_ORG_ID") removed because it's not needed for ollama
@@ -27,8 +38,6 @@ mic = sr.Microphone(device_index=MIC_INDEX)
 
 # Initialize LLM
 llm = ChatOllama(model="qwen3:1.7b", reasoning=False)
-
-# llm = ChatOpenAI(model="gpt-4o-mini", api_key=api_key, organization=org_id) for openai
 
 # Tool list
 tools = [get_time]
@@ -62,13 +71,14 @@ def speak_text(text: str):
 
 # Main interaction loop
 def write():
+    global shutdown_requested
     conversation_mode = False
     last_interaction_time = None
 
     try:
         with mic as source:
             recognizer.adjust_for_ambient_noise(source)
-            while True:
+            while not shutdown_requested:
                 try:
                     if not conversation_mode:
                         logging.info("🎤 Listening for wake word...")
@@ -115,6 +125,17 @@ def write():
 
     except Exception as e:
         logging.critical(f"❌ Critical error in main loop: {e}")
+    finally:
+        logging.info("🔄 Cleaning up resources...")
 
 if __name__ == "__main__":
-    write()
+    # Register signal handlers
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+    
+    try:
+        write()
+    except KeyboardInterrupt:
+        logging.info("🔴 Keyboard interrupt received. Shutting down gracefully...")
+    finally:
+        logging.info("👋 Jarvis shutdown complete.")
