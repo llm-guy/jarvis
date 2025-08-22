@@ -15,6 +15,69 @@
 
 ---
 
+## 🤖 Getting Started: A Step-by-Step Guide
+
+This guide will walk you through setting up Jarvis from scratch on your local machine.
+
+### Step 1: Set Up Your Project Folder
+
+First, create a dedicated folder on your computer for this project. You can name it something like `Jarvis-AI`.
+
+### Step 2: Download the Code
+
+Download the project code as a `.zip` file from the repository. Once downloaded, move the `.zip` file into the `Jarvis-AI` folder you just created. Right-click on the `.zip` file and select "Extract All" to unzip the contents.
+
+### Step 3: Set Up a Python Virtual Environment
+
+It's a best practice to use a virtual environment to manage dependencies for your project.
+
+1.  Open your terminal or command prompt.
+2.  Navigate to your project folder:
+    ```bash
+    cd path/to/Jarvis-AI
+    ```
+3.  Create a virtual environment:
+    ```bash
+    python -m venv venv
+    ```
+4.  Activate the virtual environment:
+    * **On Windows:**
+        ```bash
+        .\venv\Scripts\activate
+        ```
+    * **On macOS/Linux:**
+        ```bash
+        source venv/bin/activate
+        ```
+    You should now see `(venv)` at the beginning of your terminal prompt, indicating the virtual environment is active.
+
+### Step 4: Install Dependencies
+
+With your virtual environment activated, install all the required Python libraries using the `requirements.txt` file.
+
+```bash
+pip install -r requirements.txt
+
+### Step 5: Install and Configure Ollama
+Jarvis uses Ollama to run the language model locally.
+
+Download Ollama: Go to the official Ollama website and download the installer for your operating system.
+
+Install Ollama: Run the installer and follow the on-screen instructions.
+
+Download the Qwen Model: Open a new terminal or command prompt and run the following command to download the qwen3:1.7b model.
+
+ollama run qwen3:1.7b
+
+This will download the model to your local machine. You can then exit the Ollama session by typing /bye
+
+### Step 6: Run Jarvis
+Now you're ready to start the assistant. Make sure you are still in your Jarvis-AI project folder with the virtual environment activated.
+
+Bash
+
+python main.py
+
 
 ## ▶️ How It Works (`main.py`)
 
