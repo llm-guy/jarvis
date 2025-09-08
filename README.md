@@ -38,11 +38,14 @@
 
 ## 🤖 How To Start Jarvis
 
+> **Note for Windows Users:** This project uses `make`. If you don't have it, you can install it easily with a package manager like [Chocolatey](https://chocolatey.org/) by running `choco install make`.
+
 1. **Install Dependencies**  
-   Make sure you have installed all required dependencies listed in `requirements.txt`:
+   Use the provided Makefile to install dependencies with uv:
    ```bash
-   pip install -r requirements.txt
+   make install
    ```
+   This will automatically install uv if not present and install all dependencies.
 
 2. **Set Up the Local Model**  
    Ensure you have the `qwen3:1.7b` model available in Ollama.
@@ -50,7 +53,7 @@
 3. **Run Jarvis**  
    Start the assistant by running:
    ```bash
-   python main.py
+   make run
    ```
 ---
 
